@@ -18,7 +18,7 @@ def cancel_mirror(update, context):
         gid = args[1]
         dl = getDownloadByGid(gid)
         if not dl:
-            return sendMessage(f"GID: <code>{gid}</code> Not Found.", context.bot, update.message)
+            return sendMessage(f"GID: <code>{gid}</code> Not Found.", context.bot, update)
     elif update.message.reply_to_message:
         mirror_message = update.message.reply_to_message
         with download_dict_lock:
@@ -28,7 +28,7 @@ def cancel_mirror(update, context):
             except:
                 dl = None
         if not dl:
-            return sendMessage(f"This is not an active task!", context.bot, update.message)
+            return sendMessage(f"This is not an active task!", context.bot, update)
     elif len(args) == 1:
         msg = f"Reply to an active <code>/{BotCommands.MirrorCommand}</code> message which was used to start the download or send <code>/{BotCommands.CancelMirror} GID</code> to cancel it!"
         return sendMessage(msg, context.bot, update.message)
@@ -36,7 +36,7 @@ def cancel_mirror(update, context):
     if OWNER_ID == user_id or dl.message.from_user.id == user_id or user_id in SUDO_USERS:
         pass
     else:
-        return sendMessage("This task doesn't belong to you!", context.bot, update.message)
+        return sendMessage("This task doesn't belong to you!", context.bot, update)
 
     if dl.status() == MirrorStatus.STATUS_ARCHIVING:
         sendMessage("Archival in Progress, You Can't Cancel It.", context.bot, update)
@@ -68,7 +68,7 @@ def cancell_all_buttons(update, context):
     buttons.sbutton("Cloning", "canall clone")
     buttons.sbutton("All", "canall all")
     button = InlineKeyboardMarkup(buttons.build_menu(2))
-    sendMarkup('Choose tasks to cancel.', context.bot, update.message, button)
+    sendMarkup('Choose tasks to cancel.', context.bot, update, button)
 
 def cancel_all_update(update, context):
     query = update.callback_query
