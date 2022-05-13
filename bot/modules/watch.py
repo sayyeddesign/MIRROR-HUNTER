@@ -34,8 +34,7 @@ def _watch(bot, update, isZip=False, isLeech=False, tag=None, multi=0):
             channel = CHANNEL_USERNAME
             botstart = f"http://t.me/{b_uname}"
             keyboard = [
-                [InlineKeyboardButton("Click Here to Start Me", url=f"{botstart}")],
-                [InlineKeyboardButton("Join Our Updates Channel", url=f"t.me/{channel}")]]
+                [InlineKeyboardButton("Click Here to Start Me", url=f"{botstart}")]]
             message = sendMarkup(
                 f"Dear {uname},\n\n<b>I found that you haven't started me in PM (Private Chat) yet.</b>\n\nFrom now on i will give link and leeched files in PM and log channel only.",
                 bot, update, reply_markup=InlineKeyboardMarkup(keyboard))

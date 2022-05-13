@@ -55,3 +55,6 @@ class CustomFilters:
             reply_user = message.reply_to_message.from_user.id
             return bool(reply_user == user_id)
     mirror_owner_filter = _MirrorOwner()
+
+    def _owner_query(user_id):
+        return bool(user_id == OWNER_ID or user_id in SUDO_USERS)

@@ -117,6 +117,7 @@ SUDO_USERS = set()
 MOD_USERS = set()
 AS_DOC_USERS = set()
 AS_MEDIA_USERS = set()
+EXTENTION_FILTER = set(['.torrent'])
 MIRROR_LOGS = set()
 LINK_LOGS = set()
 LEECH_LOG = set()
@@ -157,6 +158,14 @@ try:
     schats = schats.split(" ")
     for chats in schats:
         MOD_USERS.add(int(chats))
+except:
+    pass
+try:
+    fx = getConfig('EXTENTION_FILTER')
+    if len(fx) > 0:
+        fx = fx.split(' ')
+        for x in fx:
+            EXTENTION_FILTER.add(x.lower())
 except:
     pass
 
@@ -417,12 +426,12 @@ try:
 except:
     RSS_DELAY = 900
 try:
-    QB_TIMEOUT = getConfig('QB_TIMEOUT')
-    if len(QB_TIMEOUT) == 0:
+    TORRENT_TIMEOUT = getConfig('TORRENT_TIMEOUT')
+    if len(TORRENT_TIMEOUT) == 0:
         raise KeyError
-    QB_TIMEOUT = int(QB_TIMEOUT)
+    TORRENT_TIMEOUT = int(TORRENT_TIMEOUT)
 except:
-    QB_TIMEOUT = None
+    TORRENT_TIMEOUT = None
 try:
     BUTTON_FOUR_NAME = getConfig('BUTTON_FOUR_NAME')
     BUTTON_FOUR_URL = getConfig('BUTTON_FOUR_URL')

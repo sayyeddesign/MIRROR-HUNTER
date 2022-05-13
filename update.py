@@ -42,7 +42,7 @@ try:
     if len(UPSTREAM_BRANCH) == 0:
        raise TypeError
 except TypeError:
-    UPSTREAM_BRANCH = 'qbit'
+    UPSTREAM_BRANCH = None
 
 if UPSTREAM_REPO is not None:
     if ospath.exists('.git'):
@@ -60,4 +60,4 @@ if UPSTREAM_REPO is not None:
     if update.returncode == 0:
         logging.info('Successfully updated with latest commit from UPSTREAM_REPO')
     else:
-        logging.error('Something went wrong while updating, check UPSTREAM_REPO if valid or o!')
+        logging.error('Something went wrong while updating!')
